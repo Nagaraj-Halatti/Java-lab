@@ -1,88 +1,63 @@
-import java.util.*;
-import java.lang.*;
-class popsAgexception extends Exception
-{
-    int aF;
-    popsAgexception(int a)
-    {
-        aF = a;
-    }
-    public String toString()
-    {
-        return("FATHER AGE IS INVALID " + aF);
+import java.util.Scanner;
+class fatherException extends Exception{
+    public String toString(){
+        return ("Father age is less than 0");
     }
 }
-class sonAgexception extends Exception
-{
-    int aS;
-    sonAgexception(int a)
-    {
-        aS = a;
+class sonException extends Exception{
+    int a;
+    public sonException(int sonage) {
+        a=sonage;
     }
-    public String toString()
-    {
-        return("SON AGE IS INVALID " + aS);
+    public String toString(){
+        if(a<0)
+        return ("Son age is less than 0");
+        else
+            return ("Son age is more than father age");
     }
 }
-class father
-{
-    Scanner sc = new Scanner(System.in);
-    int ageF;
-    father()
-    {
-        System.out.println("ENTER FATHER AGE : ");
-        ageF = sc.nextInt();
+class Father {
+    public int age;
+    Scanner sc=new Scanner(System.in);
+
+    public Father() {
+        System.out.print("Enter father's age: ");
+        age=sc.nextInt();
     }
-    void wrong_Age() throws popsAgexception
-    {
-        if(ageF<0)
-        {
-            throw new popsAgexception(ageF);
+    void fun1()throws fatherException{
+        if(age<0)
+            throw new fatherException();
+    }
+}
+class son extends Father{
+    public int sonage;
+    Scanner sa=new Scanner(System.in);
+    public son() {
+        System.out.print("Enter son age: ");
+        sonage=sa.nextInt();
+    }
+    void fun2()throws sonException{
+        if(sonage<0 || sonage>super.age)
+            throw new sonException(sonage);
+    }    
+}
+class Exceptions{
+    public static void main(String[] args) {
+        son s=new son();
+        try{
+            s.fun1();
         }
-    }
-}
-class son extends father
-{
-    int ageS;
-    Scanner sc = new Scanner(System.in);
-    son()
-    {
-        System.out.println("ENTER SON AGE : ");
-        ageS = sc.nextInt();
-    }
-    void wrong() throws sonAgexception
-    {
-        if( ageS<0 || ageS >= ageF)
-        {
-            
-            throw new sonAgexception(ageS);
+        catch(fatherException e){
+            System.out.println(e);
         }
-    }
-}
-class except
-{
-    public static void main(String args[]) {
-    son s = new son();
-    int c = 0;
-    try {
-        s.wrong_Age();
-        s.wrong();
+        try{
+            s.fun2();
+        }
+        catch(sonException e){
+            System.out.println(e);
+        }
+        System.out.println("Father's age: "+s.age);
+        System.out.println("Son's age: "+s.sonage);
         
-    } 
-    catch(sonAgexception e) {
-        //TODO: handle exception
-        System.out.println(e);
-        c = 1;
     }
-    catch(popsAgexception e) {
-        //TODO: handle exception
-        System.out.println(e);
-        c = 1;
-    }
-    if(c == 0)
-    {
-        System.out.println("AGES ARE ENTERED CORRECTLY \n"+"FATHER AGE = "+ s.ageF+"\n"+"SON AGE = "+s.ageS);
-    }
-    
-}
 }
