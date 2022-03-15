@@ -1,21 +1,33 @@
-class Multi extends Thread{  
-    public void run(){  
-    for(byte i=0;i<10;i++)
-    System.out.println("thread1 :"+(i+1));  
-    }  
-    } 
-    class Multi1  implements Runnable{  
-    public void run(){  
-    for(byte i=0;i<6;i++)
-    System.out.println("thread2 : "+(i+1));  
-    }  
-    }  
-    class threadmain{
-    public static void main(String args[]){  
-    Multi t1=new Multi();  
-    t1.start();  
-    Multi1 m1=new Multi1(); 
-    Thread t2 =new Thread(m1);
-    t2.start();
-     }  
+import java.util.*;
+class multithread implements Runnable
+{
+    Thread t;
+    String a;
+    int b;
+    multithread(String s, int n)
+    {
+        a=s; b=n;
+        t=new Thread(this,"Thread");
+        t.start();
     }
+    public void run()
+    {
+        try {
+            for(int i=5;i>0;i--)
+            {
+                System.out.println(a);
+                Thread.sleep(b);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Thread exception");
+        }
+    }
+}
+
+class thread{
+    public static void main(String[] args) {
+        multithread n=new multithread("BMS College of Engineering",10000);
+        multithread m=new multithread("CSE",2000);    
+    } 
+    
+}
