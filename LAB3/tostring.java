@@ -17,7 +17,7 @@ class book{
         return "\nname:"+name+"\nauthor:"+author+"\nno_of_pages:"+n+"\ncost:"+price;
     }
 }
-public class ToString
+class tostring
 {
 	public static void main(String[] args) {
 		Scanner in=new Scanner(System.in);

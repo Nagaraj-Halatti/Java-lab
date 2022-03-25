@@ -17,7 +17,7 @@ class multiple<T,V>{
         return obj2;
     }
 }
-public class Mavenproject2 {
+class Mavenproject2 {
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);

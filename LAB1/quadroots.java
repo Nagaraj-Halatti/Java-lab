@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-public class quad_roots {
+class quadroots {
     public static void main(String[] args)
     {   double a,b,c,r1,r2,r;
         Scanner in=new Scanner(System.in);

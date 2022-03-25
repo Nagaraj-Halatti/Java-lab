@@ -48,7 +48,7 @@ class circle extends fig{
         return (d1*d1*3.14);
     }
 }
-public class area_of_diff_figures
+class area_of_diff_figures
 {   public static void main(String args[])
     {
         
